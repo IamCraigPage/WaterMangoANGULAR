@@ -1,0 +1,28 @@
+<h1 id="tableLabel">Office Plants</h1>
+
+<h1>{{statusText}}</h1>
+<h1>{{warningText}}</h1>
+
+
+<p *ngIf="!plants"><em>Loading... on the plants screen!</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="plants">
+  <thead>
+    <tr>
+      <th>Plant</th>
+      <th>Description</th>
+      <th>Last Watered</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let plant of plants">
+      <td>{{ plant.name }}</td>
+      <td>{{ plant.description }}</td>
+      <td>{{ plant.lastWatered }}</td>
+      <td><button class="btn btn-primary" (click)="WaterPlantClick(plant.id)" [disabled]="CheckIfPlantOnCooldown(plant.id)" >Water</button>
+      <button class="btn btn-primary" (click)="CancelWateringPlant(plant.id)" [disabled]="!CheckIfPlantIsCurrentlyWatering(plant.id)">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
